@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LIVORA – Rantai Pasok Digital Inklusif Berbasis AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 21V14h4v7zM9 21V10h4v11zM15 21V6h4v15z"/><path d="M3 9l5-4 4 2 7-5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
+<symbol id="i-sprout" viewBox="0 0 24 24"><path d="M11 21v-8c-4 0-7-2-7-7 5 0 7 2 7 5 0-4 3-7 9-7 0 6-3 9-7 9v8z"/></symbol>
+<symbol id="i-cube" viewBox="0 0 24 24"><path d="M12 2l9 4.5v11L12 22l-9-4.5v-11z"/><path d="M3.5 7L12 11.5 20.5 7M12 11.5V21" stroke="#fff" stroke-width="1.5" fill="none"/></symbol>
+<symbol id="i-truck" viewBox="0 0 24 24"><path d="M1 5h14v11H1zM16 9h4l3 3v4h-7z"/><circle cx="6" cy="18" r="2.3" stroke="#fff" stroke-width="1.2"/><circle cx="18" cy="18" r="2.3" stroke="#fff" stroke-width="1.2"/></symbol>
+<symbol id="i-hand" viewBox="0 0 24 24"><path d="M1 8h4l3-2h4l2 1 3-1h6v9h-3l-4 4-3-1-2 1-3-3-2 1-3-3H1z"/><path d="M9 11l3 2 3-2M8 14l2 2M12 15l2 2" stroke="#fff" stroke-width="1.3" fill="none" stroke-linecap="round"/></symbol>
+<symbol id="i-people" viewBox="0 0 24 24"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.3"/><circle cx="19" cy="9" r="2.3"/><path d="M6 20c0-4 2.5-6 6-6s6 2 6 6zM0 18c0-3 2-5 5-5 1 0 2 .3 2.6.8C6 15 5.5 17 5.5 18zM24 18c0-3-2-5-5-5-1 0-2 .3-2.6.8C18 15 18.5 17 18.5 18z"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24"><path d="M5 4h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z"/><path d="M3 9h18" stroke="#fff" stroke-width="1.5"/><path d="M7 12h2v2H7zM11 12h2v2h-2zM15 12h2v2h-2zM7 16h2v2H7zM11 16h2v2h-2z" fill="#fff"/><path d="M8 2v4M16 2v4" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="9" cy="9" r="4"/><path d="M9 1v2M2 9h2M3.5 3.5L5 5M14.5 3.5L13 5" stroke="currentColor" stroke-width="1.6"/><path d="M8 20a4 4 0 010-8 5 5 0 019 1 3.5 3.5 0 010 7z"/></symbol>
+<symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 17V11a6 6 0 0112 0v6l2 2H4zM10 21h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+
+<!-- TOPBAR (muncul di semua halaman dalam) -->
+<header id="topbar" class="hidden"><div class="in">
+  <button class="ib" onclick="goBack()" aria-label="Kembali">‹</button>
+  <img class="logo-h" data-src="gambar_1" alt="LIVORA">
+  <button class="ib" onclick="go('dash',true)" aria-label="Beranda">⌂</button>
+</div></header>
+
+<!-- 1. SPLASH : gambar_1 -->
+<section class="screen" id="splash"><img data-src="gambar_1" alt="LIVORA"></section>
+
+<!-- 2. LOGIN : latar gambar_2 -->
+<section class="screen" id="login" data-bg="gambar_2"><div class="wrap">
+  <img class="login-logo" data-src="gambar_1" alt="LIVORA">
+  <p class="tag">Bersama Petani dan Peternak,<br>Menuju Kemandirian Ekonomi</p>
+  <div class="card login-card">
+    <h2>Masuk ke Akun Anda</h2>
+    <p class="sub">Akses platform LIVORA untuk mengelola usaha pertanian dan peternakan Anda.</p>
+    <div class="field"><span class="ico">✉</span><input id="email" type="email" placeholder="Alamat Email"></div>
+    <div class="field"><span class="ico">🔒</span><input id="pass" type="password" placeholder="Password"><button class="eye" onclick="togglePass()" type="button">👁</button></div>
+    <div class="row"><label><input type="checkbox"> Ingat saya</label><a onclick="toast('Fitur reset password segera hadir')">Lupa password?</a></div>
+    <button class="btn" onclick="doLogin()">Masuk</button>
+    <div class="or">atau</div>
+    <button class="btn out" onclick="doLogin(true)"><b style="color:#4285f4">G</b> Masuk dengan Google</button>
+    <p class="reg">Belum punya akun? <a class="link" onclick="toast('Pendaftaran segera hadir')">Daftar di sini</a></p>
+  </div>
+</div></section>
+
+<!-- 3. DASHBOARD : hero gambar_3, avatar gambar_5, banner bawah gambar_4 -->
+<section class="screen" id="dash">
+  <div class="dhero" data-bg="gambar_3">
+    
+    <div class="dwrap">
+      <div class="dhead">
+        <img class="dlogo" data-src="gambar_1" alt="LIVORA">
+        <button class="dbell" onclick="openSheet('inbox')" aria-label="Notifikasi"><svg viewBox="0 0 24 24"><use href="#i-bell"/></svg><i></i></button>
+        <button class="davatar avatar" data-bg="gambar_5" onclick="go('profile')" aria-label="Profil">👤</button>
+      </div>
+      <div class="hello"><h2>Halo, <span class="uname">Daniel</span>!</h2><p>Bersama LIVORA, wujudkan pertanian dan peternakan yang lebih sejahtera.</p></div>
+    </div>
+  </div>
+  <div class="dwrap dbody">
+    <div class="dstat">
+      <div class="dk" role="button" tabindex="0" onclick="openSheet('kom')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openSheet('kom')}" aria-label="Pilih komoditas"><span class="ci" id="d-ico">🌾</span><span class="dkt"><span class="dl"><span>Harga Rata-rata</span> <span id="d-kn">Gabah Kering Panen</span></span><b><span id="d-kp">Rp6.750</span> <small id="d-ku">/kg</small></b><em id="d-kc" class="kup">▲ +2,5%</em></span></div>
+      <div class="dk" role="button" tabindex="0" onclick="openSheet('kom')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openSheet('kom')}" aria-label="Pilih komoditas"><span class="ci"><svg viewBox="0 0 24 24"><use href="#i-cal"/></svg></span><span class="dkt"><span class="dl">Prediksi Panen</span><b><span id="d-kh">12</span> <small>Hari Lagi</small></b></span><span class="chev">›</span></div>
+      <div class="dsk"><span class="ci"><svg viewBox="0 0 24 24"><use href="#i-sun"/></svg></span><span>Cuaca Hari Ini<b>32°C <small>Cerah</small></b></span></div>
+      <div class="dsk"><span class="ci"><svg viewBox="0 0 24 24"><use href="#i-cube"/></svg></span><span>Stok Terdaftar<b><span id="d-stok">3.000</span> <small id="d-su">kg</small></b></span></div>
+    </div>
+    <div class="dfeat">
+      <button onclick="startFlow('match')"><i><svg viewBox="0 0 24 24"><use href="#i-hand"/></svg></i><b>AI Matching</b><small>Cocokkan produk dengan mitra terbaik</small></button>
+      <button onclick="startFlow('fc')"><i><svg viewBox="0 0 24 24"><use href="#i-sprout"/></svg></i><b>AI Production Forecasting</b><small>Prediksi hasil &amp; waktu panen</small></button>
+      <button onclick="startFlow('price')"><i><svg viewBox="0 0 24 24"><use href="#i-chart"/></svg></i><b>Transparansi Harga</b><small>Harga pasar real-time</small></button>
+      <button onclick="startFlow('ag')"><i><svg viewBox="0 0 24 24"><use href="#i-cube"/></svg></i><b>Agregasi Pasokan</b><small>Gabungkan hasil banyak produsen</small></button>
+      <button onclick="go('logistik')"><i><svg viewBox="0 0 24 24"><use href="#i-truck"/></svg></i><b>Integrasi Logistik</b><small>Kumpul, kirim &amp; pantau</small></button>
+    </div>
+    <div class="dlow">
+      <div class="dact-w">
+        <div class="dsec"><h3>Ringkasan Aktivitas</h3><a onclick="toast('Segera hadir')">Lihat Semua ›</a></div>
+        <div class="dact">
+          <button onclick="go('ag-tani')"><svg viewBox="0 0 24 24"><use href="#i-sprout"/></svg><b>3</b><span>Pesanan Aktif</span></button>
+          <button onclick="go('logistik')"><svg viewBox="0 0 24 24"><use href="#i-truck"/></svg><b>1</b><span>Pengiriman Dalam Proses</span></button>
+          <button onclick="startFlow('match')"><svg viewBox="0 0 24 24"><use href="#i-people"/></svg><b>12</b><span>Mitra Terhubung</span></button>
+        </div>
+      </div>
+      <div class="dpromo" data-bg="gambar_4"><div><b>Dukung Petani &amp; Peternak Indonesia Bersama LIVORA</b><button onclick="toast('Informasi lengkap segera hadir')">Pelajari Lebih Lanjut ›</button></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. PROFIL : avatar gambar_5, judul gambar_6, kelompok tani gambar_7 -->
+<section class="screen" id="profile"><div class="wrap pad-top">
+  <div class="banner pbanner" data-bg="gambar_6"><div class="bi">⚙</div><div><h2>Profil Pengguna</h2><p>Kelola informasi akun, data usaha, dan preferensi Anda.</p></div></div>
+  <div class="dgrid"><div>
+    <div class="card pcard"><div class="avatar" id="pf-av" data-bg="gambar_5">👨‍🌾</div>
+      <div><h3><span id="pf-nama"></span> <span style="color:var(--g600)">✔</span></h3><span class="pill" id="pf-role"></span><small id="pf-kota"></small><small>📅 Bergabung sejak 10 Mar 2026</small></div></div>
+    <div class="sec-h">🏪 Informasi Usaha <button class="btn sm" onclick="openSheet('usaha')">✎ Edit</button></div>
+    <div class="card usaha"><div class="ph" data-bg="gambar_7">🏡</div><div><h4 id="pf-kel"></h4><ul><li>🌿 Komoditas Utama: <b id="pf-kom"></b></li><li>📦 Kapasitas Produksi: <b id="pf-kap"></b></li><li>📅 Musim Panen: <b id="pf-panen"></b></li><li>💰 Estimasi Nilai Produksi: <b id="pf-nilai"></b></li></ul></div></div>
+  </div><div>
+    <div class="card menu" style="margin-top:14px">
+      <button onclick="openSheet('pribadi')">👤<span><b>Data Pribadi</b><small>Ubah informasi identitas, kontak, dan alamat.</small></span><span class="ar">›</span></button>
+      <button onclick="openSheet('usaha')">🌿<span><b>Data Usaha &amp; Produksi</b><small>Kelola komoditas, kapasitas, dan jadwal panen.</small></span><span class="ar">›</span></button>
+      <button onclick="openSheet('akun')">💳<span><b>Akun &amp; Keamanan</b><small>Ubah kata sandi dan atur keamanan akun.</small></span><span class="ar">›</span></button>
+      <button onclick="openSheet('notif')">🔔<span><b>Notifikasi</b><small>Atur notifikasi harga, permintaan, dan pengiriman.</small></span><span class="ar">›</span></button>
+      <button onclick="openSheet('set')">⚙<span><b>Pengaturan Aplikasi</b><small>Bahasa, tampilan, dan preferensi lainnya.</small></span><span class="ar">›</span></button>
+    </div>
+    <button class="btn red" style="margin-top:14px" onclick="logout()">⎋ Keluar dari Akun</button>
+  </div></div>
+</div></section>
+
+<!-- PILIH JENIS USAHA (dipakai semua fitur) : judul gambar_13, Pertanian gambar_14, Peternakan gambar_15 (varian _pc untuk laptop) -->
+<section class="screen" id="choose"><div class="wrap pad-top">
+  <div class="banner" data-bg="gambar_13" data-pc><div class="bi" id="ch-ico"></div><div><h2 id="ch-title"></h2><p id="ch-desc"></p></div></div>
+  <div class="h-center"><h3>Pilih Jenis Usaha</h3><p id="ch-sub"></p></div>
+  <div class="choices">
+    <button class="choice" onclick="pickType('tani')"><div class="ph" data-bg="gambar_14" data-pc>🌾</div><div><h4>Pertanian</h4><p id="ch-tani"></p></div><span class="ar">›</span></button>
+    <button class="choice" onclick="pickType('ternak')"><div class="ph" data-bg="gambar_15" data-pc>🐄</div><div><h4>Peternakan</h4><p id="ch-ternak"></p></div><span class="ar">›</span></button>
+  </div>
+</div></section>
+
+<!-- AI MATCHING : latar gambar_10 -->
+<section class="screen" id="match-form"><div class="wrap pad-top">
+  <div class="banner" data-bg="gambar_13" data-pc><div class="bi">🤝</div><div><h2>AI Matching</h2><p>Pencocokan otomatis antara produk Anda dengan mitra yang membutuhkan pasokan.</p></div></div>
+  <div class="dgrid">
+  <div class="card"><div class="sec-h" style="margin-top:0">📋 Input Data Produk</div>
+    <div class="field-row"><label>Nama Komoditas</label><select class="inp" id="m-kom" onchange="onKom()"></select></div>
+    <div class="field-row"><label>Volume Tersedia</label><input class="inp" id="m-vol" value="10.000" oninput="renderMatch()"><b id="m-u">kg</b></div>
+    <div class="field-row"><label>Kualitas Produk</label><select class="inp" id="m-qual" onchange="renderMatch()"><option>Grade A</option><option>Grade B</option><option>Grade C</option></select></div>
+    <div class="field-row"><label>Estimasi Panen / Ketersediaan</label><input class="inp" type="date" id="m-date" value="2026-12-15"></div>
+    <div class="field-row"><label>Lokasi Produksi</label><select class="inp" id="m-loc"><option>Gowa, Sulawesi Selatan</option><option>Maros, Sulawesi Selatan</option><option>Bandung, Jawa Barat</option></select></div>
+    <div class="calc" id="m-sum"></div>
+    <button class="btn" onclick="startSearch()">🤝 Cari Mitra dengan AI →</button></div>
+  <div class="card"><div class="sec-h" style="margin-top:0">Hasil Pencocokan Mitra <span class="pill" id="m-cnt"></span></div>
+    <div id="m-list"></div>
+    <button class="btn out" style="margin-top:4px" onclick="moreMitra()">🔄 Tampilkan Mitra Lain</button></div></div>
+</div></section>
+
+<section class="screen" id="match-search"><div class="wrap pad-top">
+  <div class="banner" data-bg="gambar_13" data-pc><div class="bi">🤝</div><div><h2>AI Matching</h2><p>Temukan mitra terbaik untuk produk Anda dengan bantuan AI.</p></div></div>
+  <div class="radar"><i class="wave"></i><i class="wave"></i><i class="wave"></i>
+    <div class="orbit"><span>👨‍🌾</span><span>🏪</span><span>🥬</span><span>🏭</span></div>
+    <div class="core"><img data-src="gambar_1" alt=""></div></div>
+  <div class="center"><h3 style="color:var(--g900);font-size:22px">Mencari Mitra Terbaik...</h3><p style="color:var(--mut)">Mohon tunggu sebentar, ya!</p></div>
+  <div class="pbar" style="margin-top:14px"><i id="s-bar"></i></div>
+  <div class="steps3"><div><div class="dot" id="sd1">✓</div>Menganalisis Kebutuhan Anda</div><div><div class="dot" id="sd2">✓</div>Mencocokkan dengan Mitra</div><div><div class="dot" id="sd3">✓</div>Menampilkan Hasil</div></div>
+  <button class="btn out" style="max-width:260px;margin:0 auto" onclick="cancelSearch()">✕ Batalkan Pencarian</button>
+</div></section>
+
+<section class="screen" id="match-found"><div class="wrap pad-top center">
+  <div class="big-ok">✔</div><h2 style="color:var(--g900)">Mitra Ditemukan!</h2><p style="color:var(--mut)">Kami telah menemukan mitra yang sesuai dengan kebutuhan Anda.</p>
+  <div class="card" style="margin-top:14px;text-align:left"><div class="partner"><div class="ic" id="f-ic">🏪</div><div><b id="f-name"></b><br><small id="f-loc"></small></div><div class="pc" id="f-pc"></div></div>
+    <div class="kv"><span>🌿 Produk yang Dibutuhkan<b id="f-prod"></b></span><span>📦 Volume Transaksi<b id="f-vol"></b></span></div>
+    <div class="calc" id="f-calc"></div></div>
+  <div class="stack-btn"><button class="btn" onclick="openChat(0)">💬 Hubungi Mitra</button><button class="btn out" onclick="callPartner(0)">📞 Telepon Langsung</button><button class="btn out" id="saveBtn" onclick="saveMitra()">🔖 Simpan Mitra</button></div>
+</div></section>
+
+<!-- FORECASTING -->
+<section class="screen" id="fc-tani"><div class="wrap pad-top">
+  <div class="banner" data-bg="gambar_13" data-pc><div class="bi">🌱</div><div><h2>AI Production Forecasting</h2><p>Masukkan informasi lahan dan tanaman untuk memprediksi hasil produksi Anda.</p></div></div>
+  <div class="card stack">
+    <label>🌿 Nama Tanaman</label><select class="inp" id="fc-crop"></select>
+    <label>📍 Lokasi Lahan</label><select class="inp" id="fc-loc"><option>Bandung, Jawa Barat</option><option>Gowa, Sulawesi Selatan</option><option>Maros, Sulawesi Selatan</option><option>Semarang, Jawa Tengah</option></select>
+    <div class="two"><div><label>Luas Lahan (Hektar)</label><input class="inp" id="fc-ha" type="number" value="1.5" step="0.1" min="0.1"></div><div><label>Tanggal Tanam</label><input class="inp" id="fc-tgl" type="date" value="2026-12-01"></div></div>
+    <label>Kondisi Cuaca Saat Ini</label><div class="weather"><span class="big">⛅</span><div><b>Cerah</b><br><small>Suhu 32°C • Kelembapan 68%</small></div><button class="btn sm out" style="margin-left:auto" onclick="toast('Cuaca diperbarui')">⟳ Perbarui</button></div>
+    <label>Musim Tanam</label><select class="inp" id="fc-mus"><option value="1">Musim Hujan</option><option value="0.9">Musim Kemarau</option><option value="0.95">Musim Peralihan</option></select>
+    <label>Jenis Tanah</label><select class="inp" id="fc-tnh"><option value="1">Tanah Liat</option><option value="1.05">Tanah Lempung</option><option value="0.85">Tanah Berpasir</option></select>
+    <label>Penggunaan Pupuk</label><select class="inp" id="fc-pup"><option value="1">NPK</option><option value="0.95">Urea</option><option value="0.97">Pupuk Organik</option><option value="1.08">Urea + NPK + Organik</option><option value="0.85">Tidak memakai pupuk</option></select>
+    <button class="btn" style="margin-top:16px" onclick="runForecast()">✨ Lanjutkan Analisis</button></div>
+</div></section>
+
+<section class="screen" id="fc-res"><div class="wrap pad-top">
+  <div class="banner" data-bg="gambar_13" data-pc><div class="bi">✔</div><div><h2>Prediksi Berhasil!</h2><p>Berikut adalah hasil prediksi produksi tanaman Anda.</p></div></div>
+  <div class="dgrid"><div class="card"><div class="partner"><div class="ic" id="r-ic">🌾</div><div><h3 id="r-crop" style="color:var(--g900)"></h3><small id="r-loc"></small></div></div>
+    <div class="metrics"><div>🌱 Estimasi Hasil Produksi<b id="r-ton"></b><span id="r-rng"></span></div><div>📅 Estimasi Waktu Panen<b id="r-date" style="font-size:20px"></b><span id="r-hari"></span></div></div>
+    <b style="color:var(--g900)">📊 Tren Prediksi Produksi</b><div id="r-chart"></div></div>
+  <div class="card"><div class="sec-h" style="margin-top:0">🧮 Perhitungan Produksi &amp; Keuntungan</div><div id="r-fin"></div></div></div>
+  <button class="btn" style="margin-top:14px" onclick="openSheet('rek')">💡 Lihat Rekomendasi ›</button>
+</div></section>
+
+<section class="screen" id="fc-ternak"><div class="wrap pad-top">
+  <div class="banner" data-bg="gambar_13" data-pc><div class="bi">🐄</div><div><h2>AI Production Forecasting – Peternakan</h2><p>Prediksi pertumbuhan ternak, estimasi waktu panen, biaya, serta rekomendasi pemberian vitamin.</p></div></div>
+  <div class="dgrid"><div class="card stack">
+    <label>Komoditas</label><select class="inp" id="t-kom" onchange="onTern()"></select>
+    <div class="two"><div><label>Bobot awal (kg)</label><input class="inp" id="t-w" type="number" step="0.01" value="300"></div><div><label>Jumlah (ekor)</label><input class="inp" id="t-n" type="number" min="1" value="10"></div></div>
+    <label>Tanggal Mulai Pemeliharaan</label><input class="inp" id="t-start" type="date" value="2026-12-01">
+    <div class="sec-h">🧪 Rencana Pemberian Vitamin</div>
+    <label>Jenis Vitamin</label><select class="inp"><option>Vitamin B Kompleks</option><option>Vitamin ADE</option><option>Multivitamin &amp; Mineral</option></select>
+    <label>Frekuensi Pemberian</label><select class="inp" id="t-fr"><option value="14">Setiap 14 hari</option><option value="30" selected>Setiap 30 hari</option><option value="60">Setiap 60 hari</option></select>
+    <button class="btn" style="margin-top:14px" onclick="runTernak()">☀ Prediksi dengan AI</button></div>
+  <div class="card hidden" id="t-res"><div class="sec-h" style="margin-top:0">📋 Hasil Prediksi</div>
+    <div class="partner"><div class="ic" id="t-ic">🐄</div><div><b id="t-nm" style="font-size:18px;color:var(--g900)"></b><br><small>Lama pemeliharaan</small><br><b id="t-bln" style="color:var(--g900)"></b><br><small>Estimasi panen / jual</small><br><b id="t-tgl" style="color:var(--g900)"></b></div></div>
+    <div class="metrics"><div>⚖ Bobot Awal<b id="t-w0"></b></div><div>🎯 Bobot Siap Jual<b id="t-w1"></b></div></div>
+    <div id="t-chart"></div><div id="t-fin"></div></div></div>
+</div></section>
+
+<!-- TRANSPARANSI HARGA -->
+<section class="screen" id="price-tani"><div class="wrap pad-top">
+  <div class="banner" data-bg="gambar_13" data-pc><div class="bi">📈</div><div><h2>Transparansi Harga</h2><p>Pantau harga komoditas secara real-time di berbagai lokasi untuk jual beli yang lebih adil dan transparan.</p></div></div>
+  <div class="dgrid"><div>
+  <div class="card stack"><b style="color:var(--g900)">🔍 Cari Harga Komoditas</b>
+    <div class="two"><div><label>Komoditas</label><select class="inp" id="p-kom" onchange="showPrice()"></select></div>
+    <div><label>Lokasi</label><select class="inp"><option>Semua Lokasi</option></select></div></div>
+    <button class="btn" style="margin-top:12px" onclick="showPrice()">🔍 Tampilkan Harga</button></div>
+  <div class="card big-price" style="margin-top:12px"><div class="ph" id="p-ic">🌶</div><div><b style="font-size:16px" id="p-name"></b><br><small>Rata-rata Nasional</small><br><b id="p-val"></b> <span class="up" id="p-chg"></span></div></div>
+  <div class="card stack" style="margin-top:12px"><b style="color:var(--g900)">🧮 Kalkulator Nilai Jual</b>
+    <div class="two"><div><label>Volume (kg)</label><input class="inp" id="pc-vol" value="1.000" oninput="calcSell()"></div><div><label>Lokasi Jual</label><select class="inp" id="pc-loc" onchange="calcSell()"></select></div></div>
+    <div class="calc" id="pc-out"></div></div></div>
+  <div><div class="card" style="margin-top:0"><div class="sec-h" style="margin-top:0">📉 Tren Harga (Nasional)<span class="pills" id="p-pills"><button class="on">7 Hari</button><button>30 Hari</button><button>3 Bulan</button></span></div><div id="p-chart"></div><div class="mini" id="p-stat"></div></div>
+  <div class="card" style="margin-top:12px"><div class="sec-h" style="margin-top:0">📍 Harga per Lokasi</div><table><tr><th>Lokasi</th><th>Harga (per kg)</th><th>Perubahan</th><th>Ketersediaan</th></tr><tbody id="p-tbl"></tbody></table></div>
+  <button class="btn" id="pbtn" style="margin-top:12px" onclick="setNotif('harga',!ST.notif.harga)"></button></div></div>
+</div></section>
+
+<section class="screen" id="price-ternak"><div class="wrap pad-top">
+  <div class="banner" data-bg="gambar_13" data-pc><div class="bi">⚖</div><div><h2>Transparansi Harga Hewan</h2><p>Pantau harga hewan ternak dan hasil peternakan secara real-time di berbagai daerah.</p></div></div>
+  <div class="dgrid"><div>
+  <div class="card"><b style="color:var(--g900)">Pilih Jenis Hewan / Produk</b><div class="tabs scroll" id="a-tabs" style="margin-top:8px"></div>
+    <label style="display:block;margin:12px 0 4px;font-weight:800;color:var(--g900)">📍 Pilih Daerah</label><select class="inp" id="a-reg" onchange="calcAnimal()"></select></div>
+  <div class="card big-price" style="margin-top:12px"><div><small>Harga Rata-Rata <span id="a-n"></span></small><br><b id="a-p"></b> <small>/kg</small> <span class="up" id="a-c"></span></div><div class="ph" id="a-i" style="margin-left:auto">🐄</div></div>
+  <div class="card stack" style="margin-top:12px"><b style="color:var(--g900)">🧮 Kalkulator Nilai Jual</b>
+    <div class="two"><div><label id="ac-l1">Jumlah (ekor)</label><input class="inp" id="ac-n" value="10" oninput="calcAnimal()"></div><div><label>Berat per unit (kg)</label><input class="inp" id="ac-w" value="450" oninput="calcAnimal()"></div></div>
+    <div class="calc" id="ac-out"></div></div></div>
+  <div><div class="card"><div class="sec-h" style="margin-top:0">📊 Perbandingan Harga di Berbagai Daerah</div><table><tr><th>Daerah</th><th>Harga (Rp/kg)</th><th>Perubahan</th></tr><tbody id="a-tbl"></tbody></table></div>
+  <div class="card" style="margin-top:12px;display:flex;gap:10px;align-items:center">🔔<div><b style="color:var(--g900)">Aktifkan Notifikasi</b><br><small>Dapatkan info perubahan harga terbaru.</small></div><div class="switch" id="a-sw" onclick="setNotif('harga',!ST.notif.harga)"></div></div></div></div>
+</div></section>
+
+<!-- AGREGASI -->
+<section class="screen" id="ag-tani"><div class="wrap pad-top">
+  <div class="banner" data-bg="gambar_13" data-pc><div class="bi">📦</div><div><h2>Agregasi Pasokan</h2><p>Gabungkan hasil produksi dari beberapa produsen untuk memenuhi kebutuhan mitra dalam jumlah besar.</p></div></div>
+  <div class="dgrid"><div class="card stack"><b style="color:var(--g900)">Kebutuhan Mitra</b>
+    <div class="two"><div><label>Komoditas</label><select class="inp" id="ag-kom" onchange="renderAgg()"></select></div><div><label>Kebutuhan (kg)</label><input class="inp" id="ag-need" value="10.000" oninput="renderAgg()"></div></div>
+    <div class="calc" id="ag-sum"></div></div>
+  <div class="card"><div class="sec-h" style="margin-top:0">👥 Daftar Produsen <span class="pill">4 Produsen</span></div><div id="ag-list"></div>
+    <button class="btn" style="margin-top:12px" onclick="startAgg()">📦 Gabungkan Pasokan →</button></div></div>
+</div></section>
+
+<section class="screen" id="ag-prog"><div class="wrap pad-top center agp">
+  <svg class="agsvg" viewBox="0 0 360 330" aria-hidden="true">
+   <circle cx="180" cy="258" r="66" fill="#e6f4dd"/><circle class="pulse" cx="180" cy="258" r="50" fill="#d6edc7"/>
+   <g fill="none" stroke="#2e8b2f" stroke-width="2.5" stroke-dasharray="5 6" stroke-linecap="round" class="flow">
+    <path id="pa1" d="M180 94V196"/><path id="pa2" d="M100 166C138 166 152 184 160 204"/><path id="pa3" d="M260 166C222 166 208 184 200 204"/></g>
+   <g fill="#e53935" stroke="none"><circle r="4.5"><animateMotion dur="1.6s" repeatCount="indefinite"><mpath href="#pa1"/></animateMotion></circle>
+    <circle r="4.5"><animateMotion dur="1.6s" begin=".5s" repeatCount="indefinite"><mpath href="#pa2"/></animateMotion></circle>
+    <circle r="4.5"><animateMotion dur="1.6s" begin="1s" repeatCount="indefinite"><mpath href="#pa3"/></animateMotion></circle></g>
+   <g class="av av1"><circle cx="180" cy="52" r="40" fill="#dff1d3" stroke="#b9e0a6" stroke-width="4"/><text x="180" y="54" class="avt">👨‍🌾</text></g>
+   <g class="av av2"><circle cx="62" cy="138" r="38" fill="#dff1d3" stroke="#b9e0a6" stroke-width="4"/><text x="62" y="140" class="avt">🧑‍🌾</text></g>
+   <g class="av av3"><circle cx="298" cy="138" r="38" fill="#dff1d3" stroke="#b9e0a6" stroke-width="4"/><text x="298" y="140" class="avt">👩‍🌾</text></g>
+   <ellipse class="shd" cx="180" cy="313" rx="44" ry="7" fill="#14532d" opacity=".12"/>
+   <g class="boxj" stroke="#14532d" stroke-width="3" stroke-linejoin="round">
+    <polygon points="138,237 180,259 180,305 138,283" fill="#cfe8bd"/><polygon points="180,259 222,237 222,283 180,305" fill="#e2f3d6"/><polygon points="180,215 222,237 180,259 138,237" fill="#f1f9ea"/>
+    <polygon points="157,226 176,236 200,224 181,214" fill="#14532d" stroke="none" opacity=".9"/>
+    <text id="g-em" x="201" y="268" font-size="22" text-anchor="middle" dominant-baseline="central" stroke="none">🌶</text></g>
+   <g class="spark" stroke="#2e8b2f" stroke-width="3" stroke-linecap="round" fill="none"><path d="M236 206l5-13"/><path d="M247 216l13-7"/><path d="M250 231h14"/></g>
+  </svg>
+  <h2 style="color:var(--g900)">Menggabungkan Pasokan Produsen</h2><p style="color:#3d4f43;font-size:13.5px;margin:6px 0 14px">Sistem sedang mengumpulkan dan menggabungkan hasil produksi dari beberapa produsen untuk memenuhi kebutuhan mitra.</p>
+  <div class="gpill"><div class="pbar" style="flex:1"><i id="g-bar"></i></div><b id="g-pc">0%</b></div>
+  <ul class="gsteps" id="g-list"><li><i></i><span>Mengidentifikasi produsen</span></li><li><i></i><span>Mengumpulkan pasokan</span></li><li><i></i><span>Menggabungkan volume produksi</span></li><li><i></i><span>Menyiapkan hasil agregasi</span></li></ul>
+  <svg class="land" viewBox="0 0 400 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0 58C60 28 120 48 180 54S300 28 400 48V120H0Z" fill="#d3ebc4"/><path d="M0 76C70 50 140 68 210 68S330 50 400 68V120H0Z" fill="#a9d98a"/><path d="M0 94C100 78 220 90 400 80V120H0Z" fill="#6cb83a"/>
+   <g stroke="#58a62b" stroke-width="3" fill="none" opacity=".7"><path d="M0 104Q200 90 400 100"/><path d="M0 112Q200 100 400 110"/></g>
+   <g transform="translate(262 52)"><rect x="0" y="12" width="40" height="22" fill="#f6efdc"/><path d="M-4 14L20 0l24 14z" fill="#b3342d"/><rect x="16" y="22" width="8" height="12" fill="#8a5a3a"/><rect x="56" y="-4" width="12" height="38" fill="#cfd6d6"/><path d="M54-4a8 6 0 0116 0z" fill="#8f9a9a"/></g>
+   <g fill="#4a9a2c"><circle cx="40" cy="76" r="9"/><circle cx="58" cy="80" r="11"/><circle cx="340" cy="70" r="10"/><circle cx="362" cy="66" r="12"/><circle cx="232" cy="74" r="8"/></g></svg>
+</div></section>
+
+<section class="screen" id="ag-done"><div class="wrap pad-top">
+  <div class="banner" data-bg="gambar_13" data-pc><div class="bi">📦</div><div><h2>Agregasi Pasokan</h2><p>Menggabungkan hasil produksi beberapa produsen untuk memenuhi kebutuhan mitra dalam jumlah besar.</p></div></div>
+  <div class="dgrid"><div><div class="card"><div class="partner"><div class="ic" id="d-ic">🌶</div><div><h3 id="d-kom" style="color:var(--g900)"></h3><small id="d-loc">📍 Makassar, Sulawesi Selatan</small></div></div>
+    <div class="metrics"><div>🤝 Kebutuhan Mitra<b id="d-need"></b></div><div>👥 Jumlah Produsen<b>4</b></div></div></div>
+  <div class="card hl" style="margin-top:12px"><div class="ring" id="d-ring"><span id="d-pc"></span></div><div><small>Volume Teragregasi</small><br><b id="d-vol"></b><br><small>Kebutuhan Mitra</small><br><b id="d-need2"></b></div></div>
+  <div class="card ok" id="d-ok" style="margin-top:12px;font-size:16px"></div></div>
+  <div><div class="card"><div class="sec-h" style="margin-top:0">🧮 Pembagian Hasil Produsen</div><div id="d-tbl"></div></div>
+  <button class="btn" style="margin-top:12px" onclick="go('logistik')">🚚 Lanjut ke Logistik →</button></div></div>
+</div></section>
+
+<section class="screen" id="ag-ternak"><div class="wrap pad-top">
+  <div class="banner" data-bg="gambar_13" data-pc><div class="bi">🏚</div><div><h2>Agregasi Pasokan Peternakan</h2><p>Menghimpun dan menggabungkan pasokan dari banyak peternak untuk memenuhi kebutuhan pasar secara efisien.</p></div></div>
+  <div class="dgrid"><div>
+  <div class="card"><b style="color:var(--g900)">Pilih Komoditas</b><div class="tabs scroll" id="g-tabs" style="margin-top:8px"></div></div>
+  <div class="card stack" style="margin-top:12px"><b style="color:var(--g900)">Ajukan Pasokan</b>
+    <div class="two"><div><label>Estimasi Ketersediaan</label><select class="inp"><option>Siap Jual (Panen)</option></select></div><div><label>Perkiraan Siap Kirim</label><input class="inp" type="date" value="2026-12-20"></div></div>
+    <label id="g-lab">Jumlah yang diajukan</label><input class="inp" id="g-add" type="number" value="5" min="1" oninput="renderAggTabs(1)">
+    <div class="calc" id="g-pre"></div>
+    <button class="btn" style="margin-top:12px" onclick="addSupply()">➕ Gabung Agregasi Pasokan</button></div></div>
+  <div><div class="card"><b style="color:var(--g900)">Status Agregasi Pasokan</b><p id="g-st" style="font-size:13px;color:var(--mut)"></p><div class="pbar"><i id="gt-bar"></i></div></div>
+  <div class="card" style="margin-top:12px"><div class="sec-h" style="margin-top:0">📊 Detail Agregasi</div><div id="g-det"></div></div>
+  <div class="card" style="margin-top:12px;font-size:12.5px">ℹ <b>Manfaat Agregasi Pasokan</b><br>Menjamin volume, menjaga konsistensi kualitas, meningkatkan posisi tawar, dan memperluas akses pasar.</div></div></div>
+</div></section>
+
+<!-- LOGISTIK -->
+<section class="screen" id="logistik"><div class="wrap pad-top">
+  <div class="banner" data-bg="gambar_13" data-pc><div class="bi">🚚</div><div><h2>Integrasi Logistik</h2><p>Perencanaan, pengumpulan, pengiriman, dan pemantauan distribusi secara terpadu.</p></div></div>
+  <div class="dgrid"><div>
+  <div class="card partner"><div class="ic" id="lg-ic">🌶</div><div><h3 style="color:var(--g900)" id="lg-kom">Cabai Merah</h3><small id="lg-loc">📍 Makassar, Sulawesi Selatan</small></div><div class="pc" id="lg-st" style="font-size:12px">Pengiriman Berlangsung</div></div>
+  <div class="card metrics" style="grid-template-columns:repeat(3,1fr);margin-top:12px"><div>📦 Volume Kiriman<b style="font-size:17px" id="lg-vol">10.000 kg</b></div><div>👥 Total Produsen<b style="font-size:17px">4</b></div><div>🤝 Mitra Penerima<b style="font-size:14px" id="lg-mit">PT Segar Nusantara</b></div></div>
+  <div class="card" style="margin-top:12px"><b style="color:var(--g900)">🚚 Progres Distribusi</b>
+    <div class="steps4"><div class="done"><i>✓</i>Pengumpulan Pasokan</div><div class="done"><i>✓</i>Konsolidasi (Agregasi)</div><div class="cur" id="lg-s3"><i>🚚</i>Pengiriman (Dalam Perjalanan)</div><div id="lg-s4"><i></i>Sampai ke Mitra</div></div></div>
+  <div class="card" style="margin-top:12px"><div class="sec-h" style="margin-top:0">🧮 Rincian Biaya Logistik</div><div id="lg-cost"></div></div></div>
+  <div><div class="card" style="padding:8px"><svg class="lgmap" viewBox="0 0 360 220">
+   <defs><pattern id="fld" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(25)"><rect width="9" height="9" fill="#d3eab9"/><rect width="4" height="9" fill="#c6e2a8"/></pattern></defs>
+   <rect width="360" height="220" fill="#eaf4da"/>
+   <path d="M0 0H110L92 44 0 62Z" fill="url(#fld)"/><path d="M118 118L196 104 214 160 130 176Z" fill="url(#fld)"/><path d="M0 176L84 150 100 220H0Z" fill="url(#fld)"/><path d="M196 8H290L276 52 206 60Z" fill="url(#fld)"/>
+   <path d="M0 112C60 120 90 150 140 140S200 168 250 210" stroke="#b5dcf3" stroke-width="7" fill="none" stroke-linecap="round"/>
+   <path d="M312 0H360V220H298C318 176 290 152 304 110C318 72 298 36 312 0Z" fill="#bfe0f7"/><g stroke="#fff" stroke-width="1.5" fill="none" opacity=".8"><path d="M322 40q6-4 12 0t12 0"/><path d="M326 120q6-4 12 0t12 0"/><path d="M318 180q6-4 12 0t12 0"/></g>
+   <g stroke="#fff" stroke-width="3" fill="none" opacity=".9"><path d="M0 28H290"/><path d="M60 0V220"/><path d="M0 196H250"/></g>
+   <g fill="#c9cfc3"><rect x="246" y="150" width="14" height="12" rx="2"/><rect x="264" y="160" width="12" height="14" rx="2"/><rect x="244" y="170" width="12" height="10" rx="2"/><rect x="262" y="132" width="10" height="10" rx="2"/><rect x="278" y="168" width="10" height="12" rx="2"/></g>
+   <g fill="#6cb83a" opacity=".85"><circle cx="20" cy="90" r="6"/><circle cx="34" cy="84" r="5"/><circle cx="104" cy="190" r="6"/><circle cx="170" cy="30" r="5"/><circle cx="224" cy="40" r="6"/><circle cx="200" cy="130" r="5"/><circle cx="96" cy="124" r="5"/></g>
+   <path d="M42 170C70 150 100 130 118 100S140 70 150 58" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round"/><path d="M42 170C70 150 100 130 118 100S140 70 150 58" fill="none" stroke="#2e8b2f" stroke-width="4" stroke-linecap="round"/>
+   <path d="M150 58C185 40 215 60 232 88S250 130 278 148" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round"/>
+   <path id="seg2" d="M150 58C185 40 215 60 232 88S250 130 278 148" fill="none" stroke="#c4cdbb" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 7"/>
+   <path id="seg2p" d="M150 58C185 40 215 60 232 88S250 130 278 148" fill="none" stroke="#2e8b2f" stroke-width="4.5" stroke-linecap="round"/>
+   <g font-size="8" font-weight="800" fill="#14532d" text-anchor="middle">
+    <g transform="translate(42 170)"><path d="M0 0C-8-10-13-17-13-25A13 13 0 0113-25C13-17 8-10 0 0Z" fill="#3fa535"/><circle cy="-25" r="8" fill="#fff"/><text y="-22" font-size="9">📦</text><rect x="-12" y="6" width="104" height="26" rx="8" fill="#fff" stroke="#cfe9c4"/><text x="40" y="16">Titik Kumpul</text><text x="40" y="27" font-weight="600">(Gowa)</text></g>
+    <g transform="translate(150 58)"><path d="M0 0C-8-10-13-17-13-25A13 13 0 0113-25C13-17 8-10 0 0Z" fill="#14532d"/><circle cy="-25" r="8" fill="#fff"/><text y="-22" font-size="9">🏭</text><rect x="-124" y="-38" width="104" height="26" rx="8" fill="#fff" stroke="#cfe9c4"/><text x="-72" y="-28">Gudang Agregasi</text><text x="-72" y="-17" font-weight="600">(Maros)</text></g>
+    <g transform="translate(278 148)"><path d="M0 0C-8-10-13-17-13-25A13 13 0 0113-25C13-17 8-10 0 0Z" fill="#d93025"/><circle cy="-25" r="8" fill="#fff"/><text y="-22" font-size="9">📍</text><rect x="-70" y="8" width="84" height="26" rx="8" fill="#fff" stroke="#cfe9c4"/><text x="-28" y="18">Mitra</text><text x="-28" y="29" font-weight="600" id="lg-mc">(Makassar)</text></g></g>
+   <g id="truck"><circle class="tping" r="9" fill="none" stroke="#2e8b2f" stroke-width="2"/><g class="tbob" transform="scale(1.3)"><ellipse cy="9" rx="13" ry="2.6" fill="#000" opacity=".18"/><rect x="-14" y="-9" width="17" height="14" rx="2" fill="#fff" stroke="#14532d" stroke-width="1.6"/><path d="M3-5h7l4 5v5H3z" fill="#2e8b2f" stroke="#14532d" stroke-width="1.6" stroke-linejoin="round"/><path d="M5.5-3h3.5l2.5 3h-6z" fill="#cfe9ff"/><circle cx="-8" cy="6" r="3" fill="#333"/><circle cx="9" cy="6" r="3" fill="#333"/><text x="-5.5" y="1.5" font-size="5" text-anchor="middle" fill="#14532d" font-weight="900">LV</text></g></g>
+  </svg></div>
+  <div class="card" style="margin-top:12px"><div class="sec-h" style="margin-top:0">📋 Detail Pengiriman <span class="pill">No. Resi: LV-AGG-0027</span></div>
+    <div class="pbar" style="margin-bottom:10px"><i id="lg-bar"></i></div>
+    <div class="det"><div>🚛<small>Armada</small><b>2 Truk Box 5 Ton</b></div><div>📅<small>Estimasi Tiba</small><b id="lg-eta"></b></div><div>🛣<small>Sisa Jarak</small><b id="lg-km"></b></div><div>⏱<small>Sisa Waktu</small><b id="lg-t"></b></div><div>⚡<small>Kecepatan</small><b id="lg-v"></b></div><div>📈<small>Progres</small><b id="lg-p"></b></div></div></div>
+  <button class="btn" id="lg-btn" style="margin-top:12px" onclick="trackTruck()">⏸ Jeda Pelacakan</button></div></div>
+</div></section>
+
+<nav id="bnav" class="hidden"><div class="in">
+  <button data-n="dash" onclick="go('dash',true)"><span>🏠</span>Beranda</button>
+  <button data-n="price-tani" onclick="startFlow('price')"><span>🏬</span>Pasar</button>
+  <button data-n="logistik" onclick="go('logistik')"><span>🚚</span>Logistik</button>
+  <button onclick="openSheet('inbox')"><span>🔔</span>Notifikasi<i class="badge">3</i></button>
+  <button data-n="profile" onclick="go('profile')"><span>👤</span>Profil</button>
+</div></nav>
+
+<section class="screen" id="chat"><div class="chatw">
+  <div class="chead"><div class="ic" id="ch-ic">🏪</div><div><b id="ch-name"></b><small id="ch-st">● Online</small></div><button class="ib" onclick="startCall()" aria-label="Telepon">📞</button></div>
+  <div class="msgs" id="ch-msgs"></div>
+  <div class="chips" id="ch-chips"><button onclick="sendMsg('Berapa harga penawaran Anda?')">💰 Harga penawaran?</button><button onclick="sendMsg('Kapan bisa dikirim?')">🚚 Jadwal kirim?</button><button onclick="sendMsg('Mohon telepon saya ya')">📞 Minta telepon</button><button onclick="sendMsg('Saya setuju, deal!')">🤝 Setuju</button></div>
+  <div class="cin"><input class="inp" id="ch-in" placeholder="Tulis pesan…" onkeydown="if(event.key==='Enter')sendMsg()"><button class="btn sm" style="padding:10px 16px" onclick="sendMsg()">Kirim ➤</button></div>
+</div></section>
+<div id="callov" class="hidden" data-s="calling"><div class="cbox"><div class="cring"><i></i><i></i><div class="cav" id="c-ic">🏪</div></div><h2 id="c-name"></h2><p id="c-st"></p>
+  <div class="eq"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="cbtn c-calling c-on"><button onclick="this.classList.toggle('act')">🎙<small>Mute</small></button><button onclick="this.classList.toggle('act')">🔊<small>Speaker</small></button><button class="end" onclick="endCall()">📵<small>Akhiri</small></button></div>
+  <div class="cbtn c-in"><button class="end" onclick="declineCall()">✕<small>Tolak</small></button><button class="acc" onclick="setCall('on')">📞<small>Terima</small></button></div></div></div>
+<div id="sheet" class="sheet hidden"><div class="sheet-bg" onclick="closeSheet()"></div><div class="sheet-box"><div class="sheet-h"><b id="sh-title"></b><button class="ib" onclick="closeSheet()">✕</button></div><div id="sh-body"></div></div></div>
+<div id="toast"></div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
